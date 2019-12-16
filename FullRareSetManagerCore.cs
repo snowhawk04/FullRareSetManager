@@ -141,7 +141,8 @@ namespace FullRareSetManager
 
         public override void Render()
         {
-            if (!GameController.Game.IngameState.InGame) return;
+            // if (!GameController.Game.IngameState.InGame) return;
+            if (false) return;
 
             var needUpdate = UpdatePlayerInventory();
             var IngameState = GameController.Game.IngameState;
