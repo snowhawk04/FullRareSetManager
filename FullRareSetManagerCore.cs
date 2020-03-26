@@ -888,8 +888,10 @@ namespace FullRareSetManager
                 case "Dagger": return StashItemType.OneHanded;
                 case "Claw": return StashItemType.OneHanded;
                 case "Shield": return StashItemType.OneHanded;
+				case "Rune Dagger": return StashItemType.OneHanded;
+				case "Warstaff": return StashItemType.TwoHanded;
 
-                case "Ring": return StashItemType.Ring;
+				case "Ring": return StashItemType.Ring;
                 case "Amulet": return StashItemType.Amulet;
                 case "Belt": return StashItemType.Belt;
 
