@@ -292,3 +292,6 @@ StashData.json
 src/FullRareSetManager/FullRareSetManager.csproj
 
 %Backup%/
+
+# KDiff3
+*.orig
