@@ -154,8 +154,7 @@ namespace FullRareSetManager
 
         public override void Render()
         {
-            // if (!GameController.Game.IngameState.InGame) return;
-            if (false) return;
+            if (!GameController.Game.IngameState.InGame) return;
 
             if (!_allowScanTabs)
                 return;
