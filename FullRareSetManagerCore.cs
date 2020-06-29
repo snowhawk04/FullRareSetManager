@@ -1068,6 +1068,33 @@ namespace FullRareSetManager
 
         private bool DrawBorder(long entityAddress, ItemDisplayData data)
         {
+            if (GameController.Game.IngameState.IngameUi.AtlasPanel.IsVisible)
+                return false;
+
+            if (GameController.Game.IngameState.IngameUi.BetrayalWindow.IsVisible)
+                return false;
+
+            if (GameController.Game.IngameState.IngameUi.CraftBench.IsVisible)
+                return false;
+
+            if (GameController.Game.IngameState.IngameUi.DelveWindow.IsVisible)
+                return false;
+
+            if (GameController.Game.IngameState.IngameUi.IncursionWindow.IsVisible)
+                return false;
+
+            if (GameController.Game.IngameState.IngameUi.MetamorphWindow.IsVisible)
+                return false;
+
+            if (GameController.Game.IngameState.IngameUi.TreePanel.IsVisible)
+                return false;
+
+            if (GameController.Game.IngameState.IngameUi.UnveilWindow.IsVisible)
+                return false;
+
+            if (GameController.Game.IngameState.IngameUi.ZanaMissionChoice.IsVisible)
+                return false;
+
             var ui = GameController.Game.IngameState.IngameUi;
             var shouldUpdate = false;
 
