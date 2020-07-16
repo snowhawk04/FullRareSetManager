@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
@@ -30,6 +31,7 @@ namespace FullRareSetManager
         private StashData _sData;
         public ItemDisplayData[] DisplayData;
         private bool _allowScanTabs = true;
+        private Stopwatch _fixStopwatch = new Stopwatch();
 
         public override void ReceiveEvent(string eventId, object args)
         {
@@ -37,6 +39,7 @@ namespace FullRareSetManager
 
             if (eventId == "stashie_start_drop_items")
             {
+                _fixStopwatch.Restart();
                 _allowScanTabs = false;
             }
             else if (eventId == "stashie_stop_drop_items")
@@ -45,6 +48,7 @@ namespace FullRareSetManager
             }
             else if (eventId == "stashie_finish_drop_items_to_stash_tab")
             {
+                _fixStopwatch.Restart();
                 UpdateStashes();
                 UpdatePlayerInventory();
                 UpdateItemsSetsInfo();
@@ -157,7 +161,11 @@ namespace FullRareSetManager
             if (!GameController.Game.IngameState.InGame) return;
 
             if (!_allowScanTabs)
+            {
+                if (_fixStopwatch.ElapsedMilliseconds > 3000)
+                    _allowScanTabs = true;//fix for stashie doesn't send the finish drop items event
                 return;
+            }
 
             var needUpdate = UpdatePlayerInventory();
             var IngameState = GameController.Game.IngameState;
@@ -743,7 +751,7 @@ namespace FullRareSetManager
                     add = true;
                 }
 
-                curStashData.StashTabItems = new List<StashItem>();
+                var items = new List<StashItem>();
                 needUpdateAllInfo = true;
 
                 foreach (var invItem in visibleInventoryItems)
@@ -763,10 +771,14 @@ namespace FullRareSetManager
                     newStashItem.InventPosX = invItem.InventPosX;
                     newStashItem.InventPosY = invItem.InventPosY;
                     newStashItem.BInPlayerInventory = false;
-                    curStashData.StashTabItems.Add(newStashItem);
+                    items.Add(newStashItem);
                 }
 
-                curStashData.ItemsCount = (int) stash.ItemCount;
+                if (_currentOpenedStashTab.Address == stash.Address)//in case tab was closed before we finish update
+                {
+                    curStashData.StashTabItems = items;
+                    curStashData.ItemsCount = (int) stash.ItemCount;
+                }
 
                 if (add && curStashData.ItemsCount > 0)
                     _sData.StashTabs.Add(stashName, curStashData);
