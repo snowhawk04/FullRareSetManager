@@ -31,7 +31,7 @@ namespace FullRareSetManager
         private StashData _sData;
         public ItemDisplayData[] DisplayData;
         private bool _allowScanTabs = true;
-        private Stopwatch _fixStopwatch = new Stopwatch();
+        private readonly Stopwatch _fixStopwatch = new Stopwatch();
 
         public override void ReceiveEvent(string eventId, object args)
         {
@@ -1080,7 +1080,7 @@ namespace FullRareSetManager
 
         private bool DrawBorder(long entityAddress, ItemDisplayData data)
         {
-            if (GameController.Game.IngameState.IngameUi.AtlasPanel.IsVisible)
+            if (GameController.Game.IngameState.IngameUi.Atlas.IsVisible)
                 return false;
 
             if (GameController.Game.IngameState.IngameUi.BetrayalWindow.IsVisible)

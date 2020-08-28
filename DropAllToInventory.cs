@@ -25,7 +25,7 @@ namespace FullRareSetManager
             var latency = (int) GameController.Game.IngameState.CurLatency;
 
             // We don't want to Switch to a tab that we are already on
-            var openLeftPanel = GameController.Game.IngameState.IngameUi.OpenLeftPanel;
+            var _ = GameController.Game.IngameState.IngameUi.OpenLeftPanel;
 
             try
             {
@@ -70,7 +70,7 @@ namespace FullRareSetManager
 
                     //Thread.Sleep(200);
                     Thread.Sleep(latency + Settings.ExtraDelay);
-                    var brCounter = 0;
+                    // var brCounter = 0;
 
                     //while (1 == 2 && !dropDownTabElements.IsVisible)
                     //{
@@ -115,7 +115,7 @@ namespace FullRareSetManager
                 Mouse.SetCursorPosAndLeftClick(tabPos.Center + _clickWindowOffset, Settings.ExtraDelay);
                 Thread.Sleep(latency + Settings.ExtraDelay);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 //BasePlugin.LogError($"Error in GoToTab {tabIndex}: {e.Message}", 5);
                 return false;
