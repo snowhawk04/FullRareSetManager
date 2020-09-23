@@ -1153,8 +1153,10 @@ namespace FullRareSetManager
             if (GameController.Game.IngameState.IngameUi.IncursionWindow.IsVisible)
                 return false;
 
+            /*
             if (GameController.Game.IngameState.IngameUi.MetamorphWindow.IsVisible)
                 return false;
+            */
 
             if (GameController.Game.IngameState.IngameUi.TreePanel.IsVisible)
                 return false;
