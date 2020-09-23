@@ -24,7 +24,7 @@ namespace FullRareSetManager
                 {
                     result = JsonConvert.DeserializeObject<StashData>(json);
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
                     return null;
                 }
