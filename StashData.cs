@@ -76,6 +76,8 @@ namespace FullRareSetManager
         public string ItemClass;
         public string ItemName;
         public StashItemType ItemType;
+        public int Width;
+        public int Height;
         public bool LowLvl;
         public string StashName;
         public bool BInPlayerInventory { get; set; }

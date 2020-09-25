@@ -56,6 +56,8 @@ namespace FullRareSetManager
         [Menu("Priority",
             "Weapon prepare priority in list of set items. If you have 1-handed and 2-handed weapons- it will consider this option.")]
         public ListNode WeaponTypePriority { get; set; }
+        [Menu("Only small weapons", "Small means 1x3 slots weapon.")]
+        public ToggleNode SmallWeaponOnly { get; set; } = new ToggleNode(false);
         [Menu("Max Collecting Sets (0 disable)",
             "Amount of sets you going to collect. It will display lower pick priority if amount of item are more than this value.")]
         public RangeNode<int> MaxSets { get; set; }

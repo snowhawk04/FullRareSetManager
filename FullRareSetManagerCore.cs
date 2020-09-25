@@ -108,14 +108,20 @@ namespace FullRareSetManager
 
             var visitResult = ProcessItem(item);
 
-            if (visitResult == null)
-                return;
+            if (visitResult == null) return;
 
             if (Settings.IgnoreOneHanded && visitResult.ItemType == StashItemType.OneHanded)
                 visitResult = null;
 
-            if (visitResult == null)
-                return;
+            if (visitResult == null) return;
+
+            if (Settings.SmallWeaponOnly && (visitResult.ItemType == StashItemType.OneHanded || 
+                                             visitResult.ItemType == StashItemType.TwoHanded)
+                                         && (visitResult.Height > 3 ||
+                                             visitResult.Width > 1))
+                visitResult = null;
+
+            if (visitResult == null) return;
 
             var index = (int) visitResult.ItemType;
 
@@ -928,6 +934,8 @@ namespace FullRareSetManager
                 newItem.ItemClass = bit.ClassName;
                 newItem.ItemName = bit.BaseName;
                 newItem.ItemType = GetStashItemTypeByClassName(newItem.ItemClass);
+                newItem.Width = bit.Width;
+                newItem.Height = bit.Height;
 
                 if (newItem.ItemType != StashItemType.Undefined)
                     return newItem;
@@ -951,17 +959,17 @@ namespace FullRareSetManager
 
             switch (className)
             {
-                case "Bow": return StashItemType.TwoHanded;
-                case "Staff": return StashItemType.TwoHanded;
-                case "Sceptre": return StashItemType.OneHanded;
                 case "Wand": return StashItemType.OneHanded;
                 case "Dagger": return StashItemType.OneHanded;
+                case "Rune Dagger": return StashItemType.OneHanded;
+                case "Sceptre": return StashItemType.OneHanded;
                 case "Claw": return StashItemType.OneHanded;
                 case "Shield": return StashItemType.OneHanded;
-				case "Rune Dagger": return StashItemType.OneHanded;
-				case "Warstaff": return StashItemType.TwoHanded;
+                case "Bow": return StashItemType.TwoHanded;
+                case "Staff": return StashItemType.TwoHanded;
+                case "Warstaff": return StashItemType.TwoHanded;
 
-				case "Ring": return StashItemType.Ring;
+                case "Ring": return StashItemType.Ring;
                 case "Amulet": return StashItemType.Amulet;
                 case "Belt": return StashItemType.Belt;
 
