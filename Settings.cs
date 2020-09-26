@@ -93,6 +93,8 @@ namespace FullRareSetManager
         public ToggleNode ShowRedRectangleAroundIgnoredItems { get; set; } = new ToggleNode(true);
         [Menu("Auto sell on keypress at vendor?")]
         public ToggleNode AutoSell { get; set; }
+        [Menu("Draw labels in inventory while any item is hovered?")]
+        public ToggleNode LablesWhileHovered { get; set; } = new ToggleNode(true);
         public ToggleNode Enable { get; set; }
 
         [Menu("Only Allowed Stash Tabs", "Define stash tabs manually to ignore other tabs")]

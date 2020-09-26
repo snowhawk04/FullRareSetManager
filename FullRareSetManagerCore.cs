@@ -1106,6 +1106,9 @@ namespace FullRareSetManager
             if (visibleInventoryItems == null)
                 return;
 
+            if (playerInv.HoverItem != null && !Settings.LablesWhileHovered)
+                return;
+
             foreach (var inventItem in visibleInventoryItems)
             {
                 var item = inventItem.Item;
@@ -1146,7 +1149,7 @@ namespace FullRareSetManager
 
         private bool DrawBorder(long entityAddress, ItemDisplayData data)
         {
-            if (GameController.Game.IngameState.IngameUi.AtlasPanel.IsVisible)
+            if (GameController.Game.IngameState.IngameUi.Atlas.IsVisible)
                 return false;
 
             if (GameController.Game.IngameState.IngameUi.BetrayalWindow.IsVisible)
