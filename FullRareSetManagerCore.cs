@@ -563,7 +563,7 @@ namespace FullRareSetManager
             var posX = Settings.PositionX.Value;
             var posY = Settings.PositionY.Value;
 
-            var rect = new RectangleF(posX, posY, 230, 280);
+            var rect = new RectangleF(posX, posY, 230 * Settings.WidthMultiplier, 280 * Settings.HeightMultiplier);
             Graphics.DrawBox(rect, new Color(0, 0, 0, 200));
             Graphics.DrawFrame(rect, Color.White, 2);
 

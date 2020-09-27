@@ -43,8 +43,12 @@ namespace FullRareSetManager
         public int SetsAmountStatistics { get; set; }
         [Menu("Position X")]
         public RangeNode<float> PositionX { get; set; }
+        [Menu("Width Multiplier")]
+        public RangeNode<float> WidthMultiplier { get; set; } = new RangeNode<float>(1f, 0, 3);
         [Menu("Position Y")]
         public RangeNode<float> PositionY { get; set; }
+        [Menu("Height Multiplier")]
+        public RangeNode<float> HeightMultiplier { get; set; } = new RangeNode<float>(1f, 0, 3);
         [Menu("Allow Identified Items")]
         public ToggleNode AllowIdentified { get; set; }
         [Menu("Show only with inventory")]
