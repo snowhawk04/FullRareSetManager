@@ -44,6 +44,14 @@ namespace FullRareSetManager.SetParts
 
         public override PrepareItemResult PrepareItemForSet(FullRareSetManagerSettings settings)
         {
+           
+            if (settings.OptimizeChaosSets) // high first
+            {
+                var result = HighProcess();
+
+                if (result != null)
+                    return result;
+            }
             var lowFirst = LowLvlItems.Count > 0 && LowLvlItems[0].BInPlayerInventory;
 
             if (lowFirst)

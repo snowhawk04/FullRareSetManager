@@ -52,6 +52,37 @@ namespace FullRareSetManager.SetParts
             var anyHighInInvent = HighLvlItems.Count >= 1 && HighLvlItems[0].BInPlayerInventory;
             var anyLowInInvent = LowLvlItems.Count >= 1 && LowLvlItems[0].BInPlayerInventory;
 
+            if(anyHighInInvent&& settings.OptimizeChaosSets.Value)
+            {
+                var allHighInInvent = HighLvlItems.Count >= 2 && HighLvlItems[1].BInPlayerInventory;
+
+                if (allHighInInvent)
+                {
+                    _currentSetItems = new[]
+                    {
+                        HighLvlItems[0],
+                        HighLvlItems[1]
+                    };
+
+                    return new PrepareItemResult
+                    {
+                        AllowedReplacesCount = LowLvlItems.Count,
+                        LowSet = false,
+                        BInPlayerInvent = true
+                    };
+                }
+
+                var result = PrepareHigh();
+
+                if (result != null)
+                    return result;
+
+                result = PrepareMixedHl();
+
+                if (result != null)
+                    return result;
+            }
+
             if (anyHighInInvent && anyLowInInvent)
             {
                 _currentSetItems = new[]

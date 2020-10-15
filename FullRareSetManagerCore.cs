@@ -706,6 +706,8 @@ namespace FullRareSetManager
 
             if (chaosSets <= 0 && regalSetMaxCount <= 0)
                 return;
+            if (chaosSets <= 0 && Settings.OptimizeChaosSets.Value)
+                return;
 
             {
                 var maxAvailableReplaceCount = 0;
