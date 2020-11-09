@@ -17,6 +17,7 @@ namespace FullRareSetManager
             ShowOnlyWithInventory = new ToggleNode(false);
             HideWhenLeftPanelOpened = new ToggleNode(false);
             ShowRegalSets = new ToggleNode(false);
+            OptimizeChaosSets = new ToggleNode(true);
             PositionX = new RangeNode<float>(0.0f, 0.0f, 2000.0f);
             PositionY = new RangeNode<float>(365.0f, 0.0f, 2000.0f);
             WeaponTypePriority = new ListNode {Value = "Two handed"};
@@ -57,6 +58,8 @@ namespace FullRareSetManager
         public ToggleNode HideWhenLeftPanelOpened { get; set; }
         [Menu("Show Regal sets")]
         public ToggleNode ShowRegalSets { get; set; }
+        [Menu("Optimize for Chaos sets","will pickup at least 1 low level item and others will be high level")]
+        public ToggleNode OptimizeChaosSets { get; set; }
         [Menu("Priority",
             "Weapon prepare priority in list of set items. If you have 1-handed and 2-handed weapons- it will consider this option.")]
         public ListNode WeaponTypePriority { get; set; }
