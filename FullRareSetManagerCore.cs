@@ -296,7 +296,7 @@ namespace FullRareSetManager
                     LogMessage("Error: npcTradingWindow is not visible (opened)!", 5);
                 }
 
-                var playerOfferItems = playerOfferPanel.YourOffer;
+                var playerOfferItems = npcTradingWindow.YourOffer;
                 const int setItemsCount = 9;
                 const int uiButtonsCount = 2;
 
