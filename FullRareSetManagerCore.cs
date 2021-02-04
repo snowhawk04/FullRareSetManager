@@ -311,7 +311,7 @@ namespace FullRareSetManager
                         var items = itemType.GetPreparedItems();
 
                         if (items.Any(item => !item.BInPlayerInventory))
-                            return;
+                            continue;
 
                         Keyboard.KeyDown(Keys.LControlKey);
 
